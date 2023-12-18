@@ -1,4 +1,6 @@
 .container {
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-light-300);
   border-radius: 5px;
   max-width: 250px;
@@ -59,4 +61,8 @@
 
 .containerRating  {
   display: flex;
+}
+
+.buttonContainer {
+  margin-top: auto;
 }

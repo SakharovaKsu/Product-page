@@ -28,6 +28,7 @@ export const Card: FC<Props> = ({
   reviewsNumber,
 }) => {
   const classNames = {
+    buttonContainer: clsx(s.buttonContainer),
     container: clsx(s.container),
     containerPrice: clsx(s.containerPrice),
     containerRating: clsx(s.containerRating),
@@ -55,12 +56,14 @@ export const Card: FC<Props> = ({
         </div>
         <span>{reviewsNumber} отзывов</span>
       </div>
-      <Button color={'warning'} fullWidth variant={'contained'}>
-        <IconButton aria-label={'add to shopping cart'} color={'inherit'}>
-          <AddShoppingCartRoundedIcon />
-        </IconButton>
-        купить
-      </Button>
+      <div className={classNames.buttonContainer}>
+        <Button color={'warning'} fullWidth variant={'contained'}>
+          <IconButton aria-label={'add to shopping cart'} color={'inherit'}>
+            <AddShoppingCartRoundedIcon />
+          </IconButton>
+          купить
+        </Button>
+      </div>
     </div>
   )
 }

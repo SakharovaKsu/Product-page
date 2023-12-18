@@ -7,7 +7,7 @@ export const Header = () => {
     <div className={s.container}>
       <p className={s.logo}>PRODUCT PAGE</p>
       <Button color={'inherit'} variant={'contained'}>
-        Card
+        Корзина
       </Button>
     </div>
   )

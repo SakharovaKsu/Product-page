@@ -1,5 +1,5 @@
 import product1 from '@/assest/product-1.png'
-import { Card } from '@/components/card/card'
+import { Card } from '@/components/cards/card/card'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {
@@ -11,7 +11,7 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Card1: Story = {
+export const OneCard: Story = {
   args: {
     discount: '72%',
     nameProduct: 'Мягкая игрушка Fancy Lazy cat 55 см / Длинная подушка для засыпания и сна',
