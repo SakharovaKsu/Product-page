@@ -8,13 +8,29 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "format": "prettier --write src",
-    "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input"
+    "lint": "eslint src --ext .jsx,.js,.tsx,.ts  --no-error-on-unmatched-pattern --fix && stylelint --fix src/{,*/}*.{scss,css} --allow-empty-input",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@fontsource/ubuntu": "^5.0.8",
+    "@mui/material": "^5.15.0",
+    "clsx": "^2.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "sass": "^1.69.5"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.6.5",
+    "@storybook/addon-interactions": "^7.6.5",
+    "@storybook/addon-links": "^7.6.5",
+    "@storybook/addon-onboarding": "^1.0.10",
+    "@storybook/blocks": "^7.6.5",
+    "@storybook/react": "^7.6.5",
+    "@storybook/react-vite": "^7.6.5",
+    "@storybook/test": "^7.6.5",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
@@ -23,6 +39,8 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-storybook": "^0.6.15",
+    "storybook": "^7.6.5",
     "typescript": "^5.2.2",
     "vite": "^5.0.8"
   }

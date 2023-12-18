@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: aqua;
+  width: 100%;
+  padding: 20px;
+}
+
+.logo {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
+}
