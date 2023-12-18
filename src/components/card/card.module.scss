@@ -1,0 +1,62 @@
+.container {
+  background-color: var(--color-light-300);
+  border-radius: 5px;
+  max-width: 250px;
+  padding: 15px;
+}
+
+.img {
+  border-radius: 5px;
+  width: 100%;
+  height: auto;
+  background-color: var(--color-dark-100);
+}
+
+.title {
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-regular);
+}
+
+.containerPrice {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.price {
+  text-decoration: line-through;
+  color: var(--color-dark-100);
+  font-size: var(--font-size-m);
+}
+
+.newPrice,
+.commonPrice {
+  font-size: var(--font-size-xxl);
+  color: var(--color-success-700);
+  font-weight: var(--font-weight-bold);
+}
+
+.commonPrice {
+  color: var(--color-dark-500);
+}
+
+.discount {
+  font-size: var(--font-size-m);
+  color: var(--color-danger-300);
+  font-weight: var(--font-weight-bold);
+}
+
+.containerReviews {
+  padding-top: 10px;
+  padding-bottom: 25px;
+  display: flex;
+  gap: 15px;
+  color: var(--color-dark-100);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-s);
+}
+
+.containerRating  {
+  display: flex;
+}

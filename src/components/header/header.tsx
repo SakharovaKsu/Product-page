@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <div className={s.container}>
       <p className={s.logo}>PRODUCT PAGE</p>
-      <Button color={'secondary'} variant={'contained'}>
+      <Button color={'inherit'} variant={'contained'}>
         Card
       </Button>
     </div>

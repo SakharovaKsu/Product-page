@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: aqua;
+  background-color: var(--color-warning-500);
   width: 100%;
   padding: 20px;
 }
@@ -11,4 +11,5 @@
   font-family: var(--font-family-primary);
   font-size: var(--font-size-m);
   font-weight: var(--font-weight-bold);
+  color: var(--color-light-100);
 }
