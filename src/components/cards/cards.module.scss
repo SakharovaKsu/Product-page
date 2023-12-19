@@ -1,4 +1,10 @@
 .container {
+  padding-top: 50px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.containerCards {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
@@ -8,4 +14,11 @@
 
 .box {
   display: flex;
+}
+
+.title {
+
+  color: var(--color-light-100);
+  text-transform: uppercase;
+  text-align: center;
 }
