@@ -1,6 +1,6 @@
 import { Cards } from '@/components/cards'
-import { CardsList } from '@/components/cards/cards.stories'
 import { Header } from '@/components/header'
+import { CardsList } from '@/features/card.reducer'
 
 import s from './app.module.scss'
 

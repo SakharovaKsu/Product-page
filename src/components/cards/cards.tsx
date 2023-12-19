@@ -1,31 +1,22 @@
 import { FC } from 'react'
 
 import { Card } from '@/components/cards/card/card'
+import { CardProduct } from '@/features/types/types'
 
 import s from './cards.module.scss'
 
-type item = {
-  discount?: string
-  id: number
-  nameProduct: string
-  newPrice: string
-  picture: string
-  price?: string
-  rating: number
-  reviewsNumber: number
-}
-
 type Props = {
-  items: item[]
+  items: CardProduct[]
 }
 
 export const Cards: FC<Props> = ({ items }) => {
   return (
     <div className={s.container}>
-      {items.map((card, index) => (
+      {items.map(card => (
         <Card
+          cardId={card.id}
           discount={card.discount}
-          key={index}
+          key={card.id}
           nameProduct={card.nameProduct}
           newPrice={card.newPrice}
           picture={card.picture}

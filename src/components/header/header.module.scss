@@ -13,3 +13,18 @@
   font-weight: var(--font-weight-bold);
   color: var(--color-light-100);
 }
+
+.containerPrice {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.totalPrice {
+  border: 2px solid var(--color-light-100);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: var(--font-size-m);
+  color: var(--color-light-100);
+  font-weight: var(--font-weight-bold);
+}

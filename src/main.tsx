@@ -1,15 +1,18 @@
-import React from 'react'
+import { Provider } from 'react-redux'
 
 import { App } from '@/App'
-import ReactDOM from 'react-dom/client'
+import { store } from '@/features/store'
+import { createRoot } from 'react-dom/client'
 
+import '@/styles/index.scss'
 import '@fontsource/ubuntu/400.css'
 import '@fontsource/ubuntu/500.css'
 import '@fontsource/ubuntu/700.css'
-import '@/styles/index.scss'
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+const root = createRoot(document.getElementById('root') as HTMLElement)
+
+root.render(
+  <Provider store={store}>
     <App />
-  </React.StrictMode>
+  </Provider>
 )
