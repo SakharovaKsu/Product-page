@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 import { RootState } from '@/features/store'
 import Button from '@mui/material/Button'
@@ -13,6 +14,7 @@ export const Header = () => {
     container: clsx(s.container),
     containerPrice: clsx(s.containerPrice),
     containerRating: clsx(s.containerRating),
+    link: clsx(s.link),
     logo: clsx(s.logo),
     totalPrice: clsx(s.totalPrice),
   }
@@ -21,11 +23,11 @@ export const Header = () => {
     <div className={classNames.container}>
       <p className={classNames.logo}>PRODUCT PAGE</p>
       <div className={classNames.containerPrice}>
-        {totalPrice > 0 ? <span className={classNames.totalPrice}>{totalPrice} ₽</span> : ''}
         {totalPrice > 0 ? (
-          <Button color={'inherit'} variant={'contained'}>
-            Оформить
-          </Button>
+          <NavLink className={classNames.link} style={{ color: 'none' }} to={'/basket'}>
+            Оформить:
+            <span className={classNames.totalPrice}>{totalPrice} ₽</span>
+          </NavLink>
         ) : (
           <Button color={'inherit'} variant={'contained'}>
             Корзина

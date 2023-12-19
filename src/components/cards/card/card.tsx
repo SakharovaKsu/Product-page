@@ -12,6 +12,7 @@ import s from './card.module.scss'
 
 type Props = {
   cardId: number
+  defaultCard?: boolean
   discount?: string
   nameProduct: string
   newPrice: number
@@ -23,6 +24,7 @@ type Props = {
 
 export const Card: FC<Props> = ({
   cardId,
+  defaultCard,
   discount,
   nameProduct,
   newPrice,
@@ -36,8 +38,12 @@ export const Card: FC<Props> = ({
 
   const classNames = {
     buttonContainer: clsx(s.buttonContainer),
-    buttonQuantity: clsx(s.buttonQuantity),
-    container: clsx(s.container),
+    buttonQuantity: clsx(
+      s.buttonQuantity,
+      defaultCard ? s.buttonQuantityStart : s.buttonQuantityCenter
+    ),
+    container: clsx(defaultCard ? s.containerHorizontal : s.containerVertical),
+    containerContent: clsx(defaultCard && s.containerContent),
     containerPrice: clsx(s.containerPrice),
     containerRating: clsx(s.containerRating),
     containerReviews: clsx(s.containerReviews),
@@ -65,54 +71,57 @@ export const Card: FC<Props> = ({
     }
   }
 
+  const buttonRegistration =
+    quantity >= 1 || defaultCard ? (
+      <div className={classNames.buttonQuantity}>
+        <Button
+          color={'warning'}
+          onClick={() => handleDecreaseQuantity(cardId, newPrice)}
+          variant={'contained'}
+        >
+          -
+        </Button>
+        <span>{quantity}</span>
+        <Button
+          color={'warning'}
+          onClick={() => handleIncreaseQuantity(newPrice)}
+          variant={'contained'}
+        >
+          +
+        </Button>
+      </div>
+    ) : (
+      <Button
+        color={'warning'}
+        fullWidth
+        onClick={() => handlerAddItemToCart(newPrice)}
+        variant={'contained'}
+      >
+        <IconButton aria-label={'add to shopping cart'} color={'inherit'}>
+          <AddShoppingCartRoundedIcon />
+        </IconButton>
+        купить
+      </Button>
+    )
+
   return (
     <div className={classNames.container}>
       <img alt={'Product photo.'} className={classNames.image} src={picture} />
-      <div className={classNames.containerPrice}>
-        <p className={classNames.newPrice}>{newPrice} ₽</p>
-        {price && <p className={classNames.price}>{price} ₽</p>}
-        {price && <p className={classNames.discount}>{discount}</p>}
-      </div>
-      <h2 className={classNames.title}>{nameProduct}</h2>
-      <div className={classNames.containerReviews}>
-        <div className={classNames.containerRating}>
-          <StarIcon />
-          <span>{rating}</span>
+      <div className={classNames.containerContent}>
+        <div className={classNames.containerPrice}>
+          <p className={classNames.newPrice}>{newPrice} ₽</p>
+          {price && <p className={classNames.price}>{price} ₽</p>}
+          {price && <p className={classNames.discount}>{discount}</p>}
         </div>
-        <span>{reviewsNumber} отзывов</span>
-      </div>
-      <div className={classNames.buttonContainer}>
-        {quantity >= 1 ? (
-          <div className={classNames.buttonQuantity}>
-            <Button
-              color={'warning'}
-              onClick={() => handleDecreaseQuantity(cardId, newPrice)}
-              variant={'contained'}
-            >
-              -
-            </Button>
-            <span>{quantity}</span>
-            <Button
-              color={'warning'}
-              onClick={() => handleIncreaseQuantity(newPrice)}
-              variant={'contained'}
-            >
-              +
-            </Button>
+        <h2 className={classNames.title}>{nameProduct}</h2>
+        <div className={classNames.containerReviews}>
+          <div className={classNames.containerRating}>
+            <StarIcon />
+            <span>{rating}</span>
           </div>
-        ) : (
-          <Button
-            color={'warning'}
-            fullWidth
-            onClick={() => handlerAddItemToCart(newPrice)}
-            variant={'contained'}
-          >
-            <IconButton aria-label={'add to shopping cart'} color={'inherit'}>
-              <AddShoppingCartRoundedIcon />
-            </IconButton>
-            купить
-          </Button>
-        )}
+          <span>{reviewsNumber} отзывов</span>
+        </div>
+        <div className={classNames.buttonContainer}>{buttonRegistration}</div>
       </div>
     </div>
   )
