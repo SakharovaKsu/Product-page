@@ -1,5 +1,18 @@
-.container {
+.containerColumn,
+.containerRow {
+  display: flex;
   padding: 100px;
+}
+
+.containerRow {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.containerColumn {
+  color: var(--color-light-100);
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
@@ -9,8 +22,31 @@
   padding-bottom: 30px;
 }
 
+.link {
+  background-color: var(--color-warning-500);
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: var(--font-size-m);
+}
+
 .containerCard {
   display: flex;
   flex-direction: column;
   gap: 20px;
+}
+
+.box {
+  padding-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.price {
+  font-size: var(--font-size-xxl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-light-100);
 }
