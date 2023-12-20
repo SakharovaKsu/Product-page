@@ -11,7 +11,7 @@ export function App() {
       <Header />
       <Routes>
         <Route element={<Cards items={CardsList} />} path={'/'} />
-        <Route element={<Basket />} path={'/cart'} />
+        <Route element={<Basket />} path={'/basket'} />
       </Routes>
     </>
   )

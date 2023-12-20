@@ -16,6 +16,7 @@ export const CardsList: CardProduct[] = [
     newPrice: 843,
     picture: product1,
     price: 3022,
+    quantity: 0,
     rating: 4.8,
     reviewsNumber: 343,
   },
@@ -26,6 +27,7 @@ export const CardsList: CardProduct[] = [
     newPrice: 410,
     picture: product2,
     price: 790,
+    quantity: 0,
     rating: 4.8,
     reviewsNumber: 142,
   },
@@ -36,6 +38,7 @@ export const CardsList: CardProduct[] = [
     newPrice: 843,
     picture: product3,
     price: 3022,
+    quantity: 0,
     rating: 4.8,
     reviewsNumber: 343,
   },
@@ -44,6 +47,7 @@ export const CardsList: CardProduct[] = [
     nameProduct: 'Дракон - символ года 2024',
     newPrice: 218,
     picture: product4,
+    quantity: 0,
     rating: 5,
     reviewsNumber: 118,
   },
@@ -52,6 +56,7 @@ export const CardsList: CardProduct[] = [
     nameProduct: 'Мягкая игрушка Fancy Корги Плюша для детей 30 см ',
     newPrice: 472,
     picture: product3,
+    quantity: 0,
     rating: 4.5,
     reviewsNumber: 190,
   },
@@ -62,6 +67,7 @@ export const CardsList: CardProduct[] = [
     newPrice: 484,
     picture: product6,
     price: 2500,
+    quantity: 0,
     rating: 4.8,
     reviewsNumber: 2059,
   },
@@ -70,18 +76,50 @@ export const CardsList: CardProduct[] = [
 const slice = createSlice({
   initialState: {
     cards: CardsList,
+    cartItems: [] as CardProduct[],
     totalPrice: 0,
   },
   name: 'card',
   reducers: {
-    addItemToCart: (state, action: PayloadAction<{ price: number }>) => {
+    addItemToCart: (state, action: PayloadAction<{ cardId: number; price: number }>) => {
       state.totalPrice += action.payload.price
+      const index = state.cards.findIndex(card => card.id === action.payload.cardId)
+
+      if (index !== -1) {
+        const updatedCard = { ...state.cards[index], quantity: state.cards[index].quantity + 1 }
+
+        state.cards[index] = updatedCard
+        state.cartItems.push(updatedCard)
+      }
     },
-    removeFromCart: (state, action) => {
+    addToCart: (state, action: PayloadAction<{ cardId: number }>) => {
+      const card = state.cards.find(card => card.id === action.payload.cardId)
+
+      if (card) {
+        const existingCartItemIndex = state.cartItems.findIndex(item => item.id === card.id)
+
+        card.quantity += 1
+
+        if (existingCartItemIndex !== -1) {
+          state.cartItems[existingCartItemIndex].quantity += 1
+        } else {
+          card.quantity += 1
+          state.cartItems.push(card)
+        }
+
+        state.totalPrice += card.newPrice
+      }
+    },
+    removeFromCart: (state, action: PayloadAction<{ cardId: number; price: number }>) => {
       const index = state.cards.findIndex(item => item.id === action.payload.cardId)
 
       if (index !== -1) {
         state.totalPrice -= action.payload.price
+
+        if (index !== -1 && state.cards[index].quantity > 0) {
+          state.totalPrice -= action.payload.price
+          state.cards[index] = { ...state.cards[index], quantity: state.cards[index].quantity - 1 }
+        }
       }
     },
   },
@@ -89,4 +127,4 @@ const slice = createSlice({
 
 export const cardReducer = slice.reducer
 
-export const { addItemToCart, removeFromCart } = slice.actions
+export const { addItemToCart, addToCart, removeFromCart } = slice.actions

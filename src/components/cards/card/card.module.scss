@@ -1,12 +1,12 @@
 .containerVertical,
 .containerHorizontal {
-  display: flex;
   background-color: var(--color-light-300);
   border-radius: 5px;
   padding: 15px;
 }
 
 .containerVertical {
+  display: flex;
   flex-direction: column;
   gap: 15px;
   max-width: 250px;
@@ -14,7 +14,9 @@
 }
 
 .containerHorizontal {
-  flex-direction: row;
+  display: grid;
+  grid-template-rows: 184px auto;
+  grid-template-columns: 1fr 2fr;
   max-width: 900px;
   gap: 25px
 }
@@ -22,6 +24,12 @@
 .containerContent {
   display: flex;
   flex-direction: column;
+
+  grid-row-start: 1;
+  grid-column-start: 2;
+
+  grid-row-end: 2;
+  grid-column-end: 3;
 }
 
 .img {
@@ -30,6 +38,12 @@
   max-height: 250px;
   background-color: var(--color-dark-100);
   object-fit: cover;
+
+  grid-row-start: 1;
+  grid-column-start: 1;
+
+  grid-row-end: 3;
+  grid-column-end: 2;
 }
 
 .title {
@@ -81,6 +95,11 @@
 }
 
 .buttonContainer {
+  grid-row-start: 2;
+  grid-column-start: 2;
+
+  grid-row-end: 3;
+  grid-column-end: 3;
   margin-top: auto;
 }
 

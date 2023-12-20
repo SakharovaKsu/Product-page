@@ -21,7 +21,9 @@ export const Header = () => {
 
   return (
     <div className={classNames.container}>
-      <p className={classNames.logo}>PRODUCT PAGE</p>
+      <NavLink className={classNames.logo} to={'/'}>
+        PRODUCT PAGE
+      </NavLink>
       <div className={classNames.containerPrice}>
         {totalPrice > 0 ? (
           <NavLink className={classNames.link} style={{ color: 'none' }} to={'/basket'}>

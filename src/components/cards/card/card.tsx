@@ -1,7 +1,8 @@
-import { FC, useState } from 'react'
+import { FC } from 'react'
+import { useSelector } from 'react-redux'
 
-import { addItemToCart, removeFromCart } from '@/features/card.reducer'
-import { useAppDispatch } from '@/features/store'
+import { addItemToCart, addToCart, removeFromCart } from '@/features/card.reducer'
+import { RootState, useAppDispatch } from '@/features/store'
 import { StarIcon } from '@/icons/star'
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded'
 import Button from '@mui/material/Button'
@@ -34,7 +35,9 @@ export const Card: FC<Props> = ({
   reviewsNumber,
 }) => {
   const dispatch = useAppDispatch()
-  const [quantity, setQuantity] = useState<number>(0)
+  const quantityCard = useSelector(
+    (state: RootState) => state.card.cards.find(card => card.id === cardId)?.quantity || 0
+  )
 
   const classNames = {
     buttonContainer: clsx(s.buttonContainer),
@@ -55,54 +58,52 @@ export const Card: FC<Props> = ({
   }
 
   const handlerAddItemToCart = (price: number) => {
-    setQuantity(1)
-    dispatch(addItemToCart({ price }))
+    dispatch(addItemToCart({ cardId, price }))
   }
 
-  const handleIncreaseQuantity = (price: number) => {
-    dispatch(addItemToCart({ price }))
-    setQuantity(prevQuantity => prevQuantity + 1)
+  const handleIncreaseQuantity = (cardId: number) => {
+    dispatch(addToCart({ cardId }))
   }
 
   const handleDecreaseQuantity = (cardId: number, price: number) => {
-    if (quantity > 0) {
-      setQuantity(quantity - 1)
+    if (quantityCard > 0) {
       dispatch(removeFromCart({ cardId, price }))
     }
   }
 
-  const buttonRegistration =
-    quantity >= 1 || defaultCard ? (
-      <div className={classNames.buttonQuantity}>
-        <Button
-          color={'warning'}
-          onClick={() => handleDecreaseQuantity(cardId, newPrice)}
-          variant={'contained'}
-        >
-          -
-        </Button>
-        <span>{quantity}</span>
-        <Button
-          color={'warning'}
-          onClick={() => handleIncreaseQuantity(newPrice)}
-          variant={'contained'}
-        >
-          +
-        </Button>
-      </div>
-    ) : (
+  const showQuantityButtons = quantityCard > 0 || defaultCard
+
+  const buttonRegistration = showQuantityButtons ? (
+    <div className={classNames.buttonQuantity}>
       <Button
         color={'warning'}
-        fullWidth
-        onClick={() => handlerAddItemToCart(newPrice)}
+        onClick={() => handleDecreaseQuantity(cardId, newPrice)}
         variant={'contained'}
       >
-        <IconButton aria-label={'add to shopping cart'} color={'inherit'}>
-          <AddShoppingCartRoundedIcon />
-        </IconButton>
-        купить
+        -
       </Button>
-    )
+      <span>{quantityCard}</span>
+      <Button
+        color={'warning'}
+        onClick={() => handleIncreaseQuantity(cardId)}
+        variant={'contained'}
+      >
+        +
+      </Button>
+    </div>
+  ) : (
+    <Button
+      color={'warning'}
+      fullWidth
+      onClick={() => handlerAddItemToCart(newPrice)}
+      variant={'contained'}
+    >
+      <IconButton aria-label={'add to shopping cart'} color={'inherit'}>
+        <AddShoppingCartRoundedIcon />
+      </IconButton>
+      купить
+    </Button>
+  )
 
   return (
     <div className={classNames.container}>
@@ -121,8 +122,8 @@ export const Card: FC<Props> = ({
           </div>
           <span>{reviewsNumber} отзывов</span>
         </div>
-        <div className={classNames.buttonContainer}>{buttonRegistration}</div>
       </div>
+      <div className={classNames.buttonContainer}>{buttonRegistration}</div>
     </div>
   )
 }

@@ -5,6 +5,7 @@ export type CardProduct = {
   newPrice: number
   picture: string
   price?: number
+  quantity: number
   rating: number
   reviewsNumber: number
 }
