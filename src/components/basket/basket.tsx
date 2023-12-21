@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { Card } from '@/components/cards/card/card'
+import { Form } from '@/components/form'
 import { clearCard } from '@/features/card.reducer'
 import { RootState, useAppDispatch } from '@/features/store'
 import { CardProduct } from '@/features/types/types'
@@ -20,8 +21,9 @@ export const Basket: FC<Props> = () => {
   const totalPrice = useSelector<RootState, number>(state => state.card.totalPrice)
   const dispatch = useAppDispatch()
   const classNames = {
-    box: clsx(s.box),
+    boxButton: clsx(s.boxButton),
     container: clsx(cards.length > 0 ? s.containerRow : s.containerColumn),
+    containerBasket: clsx(s.containerBasket),
     containerCard: clsx(s.containerCard),
     link: clsx(s.link),
     price: clsx(s.price),
@@ -35,32 +37,37 @@ export const Basket: FC<Props> = () => {
       {cards.length > 0 ? (
         <>
           <h1 className={classNames.title}>Оформление заказа</h1>
-          <div className={classNames.containerCard}>
-            {cards.map(card => {
-              return (
-                <Card
-                  cardId={card.id}
-                  defaultCard
-                  discount={card.discount}
-                  key={card.id}
-                  nameProduct={card.nameProduct}
-                  newPrice={card.newPrice}
-                  picture={card.picture}
-                  price={card.price}
-                  rating={card.rating}
-                  reviewsNumber={card.reviewsNumber}
-                />
-              )
-            })}
-          </div>
-          <div className={classNames.box}>
-            <Button color={'warning'} onClick={clearCardHandler} variant={'contained'}>
-              Очистить
-              <IconButton aria-label={'add to shopping cart'} color={'inherit'}>
-                <RemoveShoppingCartRoundedIcon />
-              </IconButton>
-            </Button>
-            <p className={classNames.price}>{`${totalPrice} ₽`}</p>
+          <div className={classNames.containerBasket}>
+            <div>
+              <div className={classNames.containerCard}>
+                {cards.map(card => {
+                  return (
+                    <Card
+                      cardId={card.id}
+                      defaultCard
+                      discount={card.discount}
+                      key={card.id}
+                      nameProduct={card.nameProduct}
+                      newPrice={card.newPrice}
+                      picture={card.picture}
+                      price={card.price}
+                      rating={card.rating}
+                      reviewsNumber={card.reviewsNumber}
+                    />
+                  )
+                })}
+              </div>
+              <div className={classNames.boxButton}>
+                <Button color={'warning'} onClick={clearCardHandler} variant={'contained'}>
+                  Очистить
+                  <IconButton aria-label={'add to shopping cart'} color={'inherit'}>
+                    <RemoveShoppingCartRoundedIcon />
+                  </IconButton>
+                </Button>
+                <p className={classNames.price}>{`Общая стоимость: ${totalPrice} ₽`}</p>
+              </div>
+            </div>
+            <Form />
           </div>
         </>
       ) : (

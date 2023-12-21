@@ -15,6 +15,14 @@
   align-items: center;
 }
 
+.containerCards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  padding: 40px 0;
+}
+
 .title {
   color: var(--color-light-100);
   text-transform: uppercase;
@@ -31,13 +39,20 @@
   font-size: var(--font-size-m);
 }
 
+.containerBasket {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: start;
+  gap: 20px;
+}
+
 .containerCard {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-.box {
+.boxButton {
   padding-top: 30px;
   display: flex;
   align-items: center;
