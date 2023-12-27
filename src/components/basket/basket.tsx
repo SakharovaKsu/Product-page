@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
 import { Card } from '@/components/cards/card/card'
-import { Form } from '@/components/form'
-import { clearCard } from '@/features/card.reducer'
+import { Form, FormValues } from '@/components/form'
+import { clearCard, orderData } from '@/features/card.reducer'
 import { RootState, useAppDispatch } from '@/features/store'
 import { CardProduct } from '@/features/types/types'
 import RemoveShoppingCartRoundedIcon from '@mui/icons-material/RemoveShoppingCartRounded'
@@ -31,6 +31,25 @@ export const Basket: FC<Props> = () => {
   }
 
   const clearCardHandler = () => dispatch(clearCard())
+
+  const handleSubmit = (data: FormValues) => {
+    const orderData = {
+      products: cards.map(card => ({
+        cardId: card.id,
+        quantity: card.quantity,
+      })),
+      totalPrice: totalPrice,
+      userInfo: {
+        address: data.address,
+        email: data.email,
+        telephone: data.telephone,
+        userName: data.userName,
+      },
+    }
+
+    console.log(orderData)
+    dispatch(orderData(orderData))
+  }
 
   return (
     <div className={classNames.container}>
@@ -67,7 +86,7 @@ export const Basket: FC<Props> = () => {
                 <p className={classNames.price}>{`Общая стоимость: ${totalPrice} ₽`}</p>
               </div>
             </div>
-            <Form />
+            <Form onSubmit={handleSubmit} />
           </div>
         </>
       ) : (

@@ -9,3 +9,10 @@ export type CardProduct = {
   rating: number
   reviewsNumber: number
 }
+
+export type UserData = {
+  address: string
+  email: string
+  telephone: string
+  userName: string
+}

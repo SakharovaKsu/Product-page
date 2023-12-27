@@ -1,6 +1,12 @@
 import { FC } from 'react'
 import { useForm } from 'react-hook-form'
 
+import {
+  schemaAddress,
+  schemaEmail,
+  schemaTelephone,
+  schemaUserName,
+} from '@/components/form/shema-validation/shema-validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
@@ -8,22 +14,20 @@ import { z } from 'zod'
 
 import s from './form.module.scss'
 
-type FormValues = z.infer<typeof formSchema>
+export type FormValues = z.infer<typeof formSchema>
 type Props = {
   disabled?: boolean
+  onSubmit: (data: FormValues) => void
 }
 
 const formSchema = z.object({
-  address: z.string().min(3),
-  email: z.string().trim().email(),
-  telephone: z
-    .string()
-    .trim()
-    .refine(value => /^[78]\d{10}$/.test(value)),
-  userName: z.string().min(3),
+  address: schemaAddress,
+  email: schemaEmail,
+  telephone: schemaTelephone,
+  userName: schemaUserName,
 })
 
-export const Form: FC<Props> = ({}) => {
+export const Form: FC<Props> = ({ onSubmit }) => {
   const {
     formState: { errors },
     handleSubmit,
@@ -37,10 +41,6 @@ export const Form: FC<Props> = ({}) => {
     },
     resolver: zodResolver(formSchema),
   })
-
-  const onSubmit = (data: FormValues) => {
-    // console.log(data)
-  }
 
   return (
     <form className={s.container} onSubmit={handleSubmit(onSubmit)}>

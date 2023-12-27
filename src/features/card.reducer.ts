@@ -115,6 +115,22 @@ const slice = createSlice({
       state.totalPrice = 0
       state.cards = state.cards.map(card => ({ ...card, quantity: 0 }))
     },
+    orderData: (state, action) => {
+      const { products } = action.payload
+
+      state.cartItems = []
+      state.totalPrice = 0
+
+      products.forEach(product => {
+        const card = state.cards.find(card => card.id === product.cardId)
+
+        if (card) {
+          card.quantity = product.quantity
+          state.cartItems.push(card)
+          state.totalPrice += card.newPrice * product.quantity
+        }
+      })
+    },
     removeFromCart: (state, action: PayloadAction<{ cardId: number; price: number }>) => {
       const index = state.cards.findIndex(item => item.id === action.payload.cardId)
 
@@ -140,4 +156,4 @@ const slice = createSlice({
 
 export const cardReducer = slice.reducer
 
-export const { addItemToCart, addToCart, clearCard, removeFromCart } = slice.actions
+export const { addItemToCart, addToCart, clearCard, orderData, removeFromCart } = slice.actions
