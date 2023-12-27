@@ -16,3 +16,8 @@ export type UserData = {
   telephone: string
   userName: string
 }
+
+export type Products = {
+  cardId: number
+  quantity: number
+}

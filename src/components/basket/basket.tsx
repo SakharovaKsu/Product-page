@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
@@ -33,7 +33,7 @@ export const Basket: FC<Props> = () => {
   const clearCardHandler = () => dispatch(clearCard())
 
   const handleSubmit = (data: FormValues) => {
-    const orderData = {
+    const orderDataProducts = {
       products: cards.map(card => ({
         cardId: card.id,
         quantity: card.quantity,
@@ -47,9 +47,17 @@ export const Basket: FC<Props> = () => {
       },
     }
 
-    console.log(orderData)
-    dispatch(orderData(orderData))
+    localStorage.setItem('cartItems', JSON.stringify(orderDataProducts))
+    dispatch(orderData(orderDataProducts))
   }
+
+  useEffect(() => {
+    const savedCartItems = localStorage.getItem('cartItems')
+
+    if (savedCartItems) {
+      dispatch(orderData(JSON.parse(savedCartItems)))
+    }
+  }, [dispatch])
 
   return (
     <div className={classNames.container}>

@@ -3,7 +3,7 @@ import product2 from '@/assest/product-2.png'
 import product3 from '@/assest/product-3.png'
 import product4 from '@/assest/product-4.png'
 import product6 from '@/assest/product-6.png'
-import { CardProduct } from '@/features/types/types'
+import { CardProduct, UserData } from '@/features/types/types'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 export type AppInitialState = ReturnType<typeof slice.getInitialState>
@@ -78,6 +78,7 @@ const slice = createSlice({
     cards: CardsList,
     cartItems: [] as CardProduct[],
     totalPrice: 0,
+    userData: {} as UserData,
   },
   name: 'card',
   reducers: {
@@ -115,11 +116,18 @@ const slice = createSlice({
       state.totalPrice = 0
       state.cards = state.cards.map(card => ({ ...card, quantity: 0 }))
     },
-    orderData: (state, action) => {
-      const { products } = action.payload
+    orderData: (
+      state,
+      action: PayloadAction<{
+        products: { cardId: number; quantity: number }[]
+        userInfo: UserData
+      }>
+    ) => {
+      const { products, userInfo } = action.payload
 
       state.cartItems = []
       state.totalPrice = 0
+      state.userData = userInfo
 
       products.forEach(product => {
         const card = state.cards.find(card => card.id === product.cardId)
