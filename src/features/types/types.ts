@@ -21,3 +21,10 @@ export type Products = {
   cardId: number
   quantity: number
 }
+
+export type Card = {
+  cards: CardProduct[]
+  cartItems: CardProduct[]
+  totalPrice: number
+  userData: UserData
+}

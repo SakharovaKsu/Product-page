@@ -5,6 +5,7 @@ import { App } from '@/App'
 import { store } from '@/features/store'
 import { createRoot } from 'react-dom/client'
 
+import '../firebese'
 import '@/styles/index.scss'
 import '@fontsource/ubuntu/400.css'
 import '@fontsource/ubuntu/500.css'
