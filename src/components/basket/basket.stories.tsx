@@ -96,19 +96,11 @@ export const StuffedBasket: Story = {
               </div>
               <div className={s.buttonContainer}>
                 <div className={s.buttonQuantity}>
-                  <Button
-                    color={'warning'}
-                    // onClick={() => handleDecreaseQuantity(cardId, newPrice)}
-                    variant={'contained'}
-                  >
+                  <Button color={'warning'} variant={'contained'}>
                     -
                   </Button>
                   <span>{card.quantity}</span>
-                  <Button
-                    color={'warning'}
-                    // onClick={() => handleIncreaseQuantity(cardId)}
-                    variant={'contained'}
-                  >
+                  <Button color={'warning'} variant={'contained'}>
                     +
                   </Button>
                 </div>

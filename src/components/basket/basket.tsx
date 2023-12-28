@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 import { Card } from '@/components/cards/card/card'
 import { Form, FormValues } from '@/components/form'
@@ -20,6 +20,7 @@ export const Basket: FC<Props> = () => {
   const cards = useSelector<RootState, CardProduct[]>(state => state.card.cartItems)
   const totalPrice = useSelector<RootState, number>(state => state.card.totalPrice)
   const dispatch = useAppDispatch()
+  const navigate = useNavigate()
   const classNames = {
     boxButton: clsx(s.boxButton),
     container: clsx(cards.length > 0 ? s.containerRow : s.containerColumn),
@@ -49,6 +50,8 @@ export const Basket: FC<Props> = () => {
 
     localStorage.setItem('cartItems', JSON.stringify(orderDataProducts))
     dispatch(orderData(orderDataProducts))
+    dispatch(clearCard())
+    navigate('/userData')
   }
 
   useEffect(() => {
