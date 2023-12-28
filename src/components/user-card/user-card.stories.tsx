@@ -1,9 +1,12 @@
 import { Provider } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 
 import { UserCard } from '@/components/user-card/user-card'
 import { store } from '@/features/store'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-react-router-v6'
+
+import s from './user-card.module.scss'
 
 const meta = {
   component: UserCard,
@@ -16,11 +19,29 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const UserData: Story = {
-  args: {
-    address: 'Москва, ул. Озерная 23',
-    email: 'nfhur@gmail.com',
-    price: 354,
-    telephone: '76857463388',
-    userName: 'Ксения Сах',
+  args: {},
+  render() {
+    return (
+      <div className={s.container}>
+        <h1 className={s.title}>Ваш заказ оформлен успешно!</h1>
+        <div className={s.containerData}>
+          <h2>John Doe</h2>
+          <p>
+            <b>Адресс доставки:</b> 123 Street, City
+          </p>
+          <p>
+            <b>Ваш номер для связи:</b> 123-456-7890
+          </p>
+          <p>
+            <b>Чек отправлен на</b> john.doe@example.com
+          </p>
+        </div>
+        <div className={s.containerLink}>
+          <NavLink className={s.link} to={'/'}>
+            В каталог
+          </NavLink>
+        </div>
+      </div>
+    )
   },
 }
