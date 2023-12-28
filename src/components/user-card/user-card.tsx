@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
 
+import { Link } from '@/components/link'
 import { RootState } from '@/features/store'
 import { UserData } from '@/features/types/types'
 import clsx from 'clsx'
@@ -32,11 +32,7 @@ export const UserCard = () => {
           <b>Чек отправлен на</b> {userData.email}
         </p>
       </div>
-      <div className={classNames.containerLink}>
-        <NavLink className={classNames.link} to={'/'}>
-          В каталог
-        </NavLink>
-      </div>
+      <Link name={'В каталог'} to={'/'} />
     </div>
   )
 }

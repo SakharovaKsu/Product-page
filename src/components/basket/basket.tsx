@@ -1,9 +1,10 @@
 import { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Card } from '@/components/cards/card/card'
 import { Form, FormValues } from '@/components/form'
+import { Link } from '@/components/link'
 import { clearCard, orderData } from '@/features/card.reducer'
 import { RootState, useAppDispatch } from '@/features/store'
 import { CardProduct } from '@/features/types/types'
@@ -103,9 +104,7 @@ export const Basket: FC<Props> = () => {
       ) : (
         <>
           <h1 className={classNames.title}>Ваша корзина пуста</h1>
-          <NavLink className={classNames.link} to={'/'}>
-            Перейти в каталог
-          </NavLink>
+          <Link name={'Перейти в каталог'} to={'/'} />
         </>
       )}
     </div>
