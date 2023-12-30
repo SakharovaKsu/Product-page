@@ -1,20 +1,20 @@
 import { Provider } from 'react-redux'
 
+import { store } from '@/app/store'
 import product3 from '@/assest/product-3.png'
 import product4 from '@/assest/product-4.png'
 import product6 from '@/assest/product-6.png'
-import { Basket } from '@/components/basket/basket'
-import { store } from '@/features/store'
-import { CardProduct } from '@/features/types/types'
+import { CardProduct } from '@/common/types/types'
 import { StarIcon } from '@/icons/star'
+import { Basket } from '@/common/pages/basket/basket'
 import RemoveShoppingCartRoundedIcon from '@mui/icons-material/RemoveShoppingCartRounded'
 import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-react-router-v6'
 
-import s from '../cards/card/card.module.scss'
 import style from './basket.module.scss'
+import s from '@/common/components/cards/card/card.module.scss'
 
 const meta = {
   component: Basket,

@@ -3,7 +3,7 @@ import product2 from '@/assest/product-2.png'
 import product3 from '@/assest/product-3.png'
 import product4 from '@/assest/product-4.png'
 import product6 from '@/assest/product-6.png'
-import { CardProduct, UserData } from '@/features/types/types'
+import { CardProduct, UserData } from '@/common/types/types'
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 export type AppInitialState = ReturnType<typeof slice.getInitialState>
@@ -162,6 +162,6 @@ const slice = createSlice({
   },
 })
 
-export const cardReducer = slice.reducer
+export const appSlice = slice.reducer
 
 export const { addItemToCart, addToCart, clearCard, orderData, removeFromCart } = slice.actions

@@ -1,4 +1,4 @@
-import { Link } from '@/components/link/link'
+import { Link } from '@/common/components/link/link'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-react-router-v6'
 

@@ -1,8 +1,8 @@
 import { useSelector } from 'react-redux'
 
-import { Link } from '@/components/link'
-import { RootState } from '@/features/store'
-import { UserData } from '@/features/types/types'
+import { RootState } from '@/app/store'
+import { Link } from '@/common/components/link'
+import { UserData } from '@/common/types/types'
 import clsx from 'clsx'
 
 import s from './user-card.module.scss'

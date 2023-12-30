@@ -1,7 +1,7 @@
 import { FC } from 'react'
 
-import { Card } from '@/components/cards/card/card'
-import { CardProduct } from '@/features/types/types'
+import { Card } from '@/common/components/cards/card/card'
+import { CardProduct } from '@/common/types/types'
 
 import s from './cards.module.scss'
 

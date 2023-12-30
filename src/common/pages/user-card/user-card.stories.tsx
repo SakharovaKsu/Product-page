@@ -1,8 +1,8 @@
 import { Provider } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 
-import { UserCard } from '@/components/user-card/user-card'
-import { store } from '@/features/store'
+import { store } from '@/app/store'
+import { UserCard } from '@/common/pages/user-card/user-card'
 import { Meta, StoryObj } from '@storybook/react'
 import { withRouter } from 'storybook-addon-react-router-v6'
 

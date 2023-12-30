@@ -6,7 +6,7 @@ import {
   schemaEmail,
   schemaTelephone,
   schemaUserName,
-} from '@/components/form/shema-validation/shema-validation'
+} from '@/common/components/form/shema-validation/shema-validation'
 import { zodResolver } from '@hookform/resolvers/zod'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'

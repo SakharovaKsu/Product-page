@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { useSelector } from 'react-redux'
 
-import { addItemToCart, addToCart, removeFromCart } from '@/features/card.reducer'
-import { RootState, useAppDispatch } from '@/features/store'
+import { addItemToCart, addToCart, removeFromCart } from '@/app/app.slice'
+import { RootState, useAppDispatch } from '@/app/store'
 import { StarIcon } from '@/icons/star'
 import AddShoppingCartRoundedIcon from '@mui/icons-material/AddShoppingCartRounded'
 import Button from '@mui/material/Button'

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink, useLocation } from 'react-router-dom'
 
-import { RootState } from '@/features/store'
+import { RootState } from '@/app/store'
 import Button from '@mui/material/Button'
 import clsx from 'clsx'
 

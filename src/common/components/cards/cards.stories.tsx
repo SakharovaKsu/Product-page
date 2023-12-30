@@ -1,8 +1,8 @@
 import { Provider } from 'react-redux'
 
-import { Cards } from '@/components/cards/cards'
-import { CardsList } from '@/features/card.reducer'
-import { store } from '@/features/store'
+import { CardsList } from '@/app/app.slice'
+import { store } from '@/app/store'
+import { Cards } from '@/common/components/cards/cards'
 import { Meta, StoryObj } from '@storybook/react'
 
 const meta = {

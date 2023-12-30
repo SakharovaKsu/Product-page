@@ -1,10 +1,10 @@
 import { Route, Routes } from 'react-router-dom'
 
-import { Basket } from '@/components/basket/basket'
-import { Cards } from '@/components/cards'
-import { Header } from '@/components/header'
-import { UserCard } from '@/components/user-card'
-import { CardsList } from '@/features/card.reducer'
+import { CardsList } from '@/app/app.slice'
+import { Cards } from '@/common/components/cards'
+import { Header } from '@/common/components/header'
+import { Basket } from '@/common/pages/basket/basket'
+import { UserCard } from '@/common/pages/user-card'
 
 export function App() {
   return (
